@@ -19,7 +19,7 @@ make
 ---
 
 Configure own server
---------------------
+====================
 
 ```
 sv_discord_token "YOUR_BOT'S_TOKEN"
