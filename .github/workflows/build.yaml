@@ -57,7 +57,7 @@ jobs:
         sudo ./install-deps.sh
         mkdir -p build
         cd build
-        cmake ..
+        cmake .. -DEXAMPLES=0
         make
         sudo make install
 
