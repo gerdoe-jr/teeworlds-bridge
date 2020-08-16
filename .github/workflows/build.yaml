@@ -11,7 +11,7 @@ jobs:
         os: [ubuntu-latest, macOS-latest, windows-latest, ubuntu-16.04]
         include:
         - os: ubuntu-latest
-          cmake-args: -G "Unix Makefiles"
+          cmake-args: -G Ninja
           build-args: --parallel
           package-file: teeworlds-*-linux_x86_64.tar.xz
           env:
@@ -52,7 +52,7 @@ jobs:
       if: contains(matrix.os, 'ubuntu')
       run: |
         sudo apt-get update -y
-        sudo apt-get install pkg-config cmake libfreetype6-dev libsdl2-dev -y
+        sudo apt-get install pkg-config cmake ninja-build libfreetype6-dev libsdl2-dev -y
         git clone --recursive https://github.com/zeroxs/aegis.cpp.git
         cd aegis.cpp
         sudo ./install-deps.sh
@@ -68,37 +68,18 @@ jobs:
         brew update
         brew install pkg-config freetype sdl2
 
-    - name: Build in debug mode
-      env: ${{ matrix.env }}
-      run: |
-        mkdir debug
-        cd debug
-        ${{ matrix.cmake-path }}cmake --version
-        ${{ matrix.cmake-path }}cmake ${{ matrix.cmake-args }} -DCMAKE_BUILD_TYPE=Debug -Werror=dev -DDOWNLOAD_GTEST=ON -DDEV=ON -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG=. ..
-        ${{ matrix.cmake-path }}cmake --build . --config Debug ${{ matrix.build-args }} --target teeworlds_srv
-    - name: Test debug
-      run: |
-        cd debug
-        ${{ matrix.cmake-path }}cmake --build . --config Debug ${{ matrix.build-args }} --target run_tests
-        ./teeworlds_srv shutdown
-
     - name: Build in release mode
       env: ${{ matrix.env }}
       run: |
         mkdir release
         cd release
-        ${{ matrix.cmake-path }}cmake ${{ matrix.cmake-args }} -DCMAKE_BUILD_TYPE=Release -Werror=dev -DDOWNLOAD_GTEST=ON -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=. ..
-        ${{ matrix.cmake-path }}cmake --build . --config Release ${{ matrix.build-args }} --target everything
-    - name: Test release
-      run: |
-        cd release
-        ${{ matrix.cmake-path }}cmake --build . --config Release ${{ matrix.build-args }} --target run_tests
-        ./teeworlds_srv shutdown
+        cmake -DCMAKE_BUILD_TYPE=Release -Werror=dev -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=. ..
+        ninja . --config Release ${{ matrix.build-args }} --target teeworlds_srv
 
     - name: Package
       run: |
         cd release
-        ${{ matrix.cmake-path }}cmake --build . --config Release ${{ matrix.build-args }} --target package_default
+        ninja --build . --config Release ${{ matrix.build-args }} --target package_default
         mkdir artifacts
         mv ${{ matrix.package-file }} artifacts
 
