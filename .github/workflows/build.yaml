@@ -73,7 +73,7 @@ jobs:
       run: |
         mkdir release
         cd release
-        cmake -DCMAKE_BUILD_TYPE=Release -Werror=dev -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=. ..
+        cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -Werror=dev -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=. ..
         ninja . teeworlds_srv
 
     - name: Package
