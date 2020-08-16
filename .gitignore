@@ -21,12 +21,6 @@ other/freetype
 other/sdl
 Info.plist
 
-crapnet*
-fake_server*
-map_resave*
-map_version*
-mastersrv*
-packetgen*
 teeworlds*
 !teeworlds.manifest
 !teeworlds.rc
