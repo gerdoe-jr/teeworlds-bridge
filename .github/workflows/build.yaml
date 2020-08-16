@@ -75,7 +75,7 @@ jobs:
         cd debug
         ${{ matrix.cmake-path }}cmake --version
         ${{ matrix.cmake-path }}cmake ${{ matrix.cmake-args }} -DCMAKE_BUILD_TYPE=Debug -Werror=dev -DDOWNLOAD_GTEST=ON -DDEV=ON -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG=. ..
-        ${{ matrix.cmake-path }}cmake --build . --config Debug ${{ matrix.build-args }} --target everything
+        ${{ matrix.cmake-path }}cmake --build . --config Debug ${{ matrix.build-args }} --target teeworlds_srv
     - name: Test debug
       run: |
         cd debug
