@@ -1,4 +1,4 @@
-﻿Teeworlds Bridge
+﻿Teeworlds Bridge ![https://github.com/gerdoe-jr/teeworlds-bridge/workflows/Build/badge.svg]
 ================
 
 Build
