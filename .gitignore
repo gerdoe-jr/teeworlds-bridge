@@ -32,7 +32,6 @@ teeworlds*
 !teeworlds.rc
 teeworlds_srv*
 testrunner
-versionsrv*
 
 # IDE project files
 .cproject
