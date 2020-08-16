@@ -74,12 +74,12 @@ jobs:
         mkdir release
         cd release
         cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -Werror=dev -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=. ..
-        ninja . teeworlds_srv
+        ninja teeworlds_srv
 
     - name: Package
       run: |
         cd release
-        ninja --build . --config Release ${{ matrix.build-args }} --target package_default
+        ninja package_default
         mkdir artifacts
         mv ${{ matrix.package-file }} artifacts
 
