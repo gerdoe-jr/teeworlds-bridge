@@ -52,6 +52,14 @@ jobs:
       run: |
         sudo apt-get update -y
         sudo apt-get install pkg-config cmake libfreetype6-dev libsdl2-dev -y
+        git clone --recursive https://github.com/zeroxs/aegis.cpp.git
+        cd aegis.cpp
+        ./install-deps.sh
+        mkdir -p build
+        cd build
+        cmake ..
+        make
+        sudo make install
 
     - name: Prepare MacOS
       if: contains(matrix.os, 'macOS')
