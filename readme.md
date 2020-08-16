@@ -1,4 +1,4 @@
-﻿Teeworlds Bridge ![https://github.com/gerdoe-jr/teeworlds-bridge/workflows/Build/badge.svg]
+﻿Teeworlds Bridge ![GitHub Actions](https://github.com/gerdoe-jr/teeworlds-bridge/workflows/Build/badge.svg)
 ================
 
 Build
