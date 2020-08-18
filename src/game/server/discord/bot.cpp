@@ -12,7 +12,7 @@ CDiscordBot::CDiscordBot(CGameContext *GameServer, DiscordConfig Config)
 
     m_Bot->set_on_ready([&](auto Ready)
     {
-        m_Channel = m_Bot->find_guild(aegis::snowflake(Config.GuildID)).find_channel(aegis::snowflake(Config.ChannelID));
+        m_Channel = m_Bot->find_guild(aegis::snowflake(Config.GuildID))->find_channel(aegis::snowflake(Config.ChannelID));
     });
 
     m_Bot->set_on_message_create([&](aegis::gateway::events::message_create Object)
