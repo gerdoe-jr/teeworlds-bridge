@@ -4,10 +4,17 @@
 
 #include <aegis.hpp>
 
+struct DiscordConfig
+{
+    std::string Token;
+    std::string GuildID;
+    std::string ChannelID;
+};
+
 class CDiscordBot
 {
 public:
-    CDiscordBot(CGameContext *GameServer, std::string Token, std::string ChannelID);
+    CDiscordBot(CGameContext *GameServer, DiscordConfig Config);
     void LogChat(int Team, std::string Nickname, std::string Message);
     void LogEnter(std::string Nickname);
     void LogExit(std::string Nickname);

@@ -1694,7 +1694,12 @@ void CGameContext::OnInit()
 #endif
 
 	/* # Discord # */
-	m_pDiscord = new CDiscordBot(this, Config()->m_SvDiscordToken, Config()->m_SvDiscordChannel);
+	DiscordConfig Configure;
+	Configure.Token = Config()->m_SvDiscordToken;
+	Configure.GuildID = Config()->m_SvDiscordServer;
+	Configure.ChannelID = Config()->m_SvDiscordToken;
+
+	m_pDiscord = new CDiscordBot(this, Configure);
 	/* # Discord # */
 }
 

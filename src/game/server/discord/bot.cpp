@@ -3,12 +3,17 @@
 
 CGameContext *CGS;
 
-CDiscordBot::CDiscordBot(CGameContext *GameServer, std::string Token, std::string ChannelID)
+CDiscordBot::CDiscordBot(CGameContext *GameServer, DiscordConfig Config)
 {
     CGS = GameServer;
-    m_Bot = new aegis::core(aegis::create_bot_t().log_level(spdlog::level::trace).token(Token));
+    m_Bot = new aegis::core(aegis::create_bot_t().log_level(spdlog::level::trace).token(Config.Token));
 
     m_Bot->wsdbg = true;
+
+    m_Bot->set_on_ready([&](auto Ready)
+    {
+        m_Channel = m_Bot->find_guild(aegis::snowflake(Config.GuildID)).find_channel(aegis::snowflake(Config.ChannelID));
+    });
 
     m_Bot->set_on_message_create([&](aegis::gateway::events::message_create Object)
     {
@@ -16,13 +21,6 @@ CDiscordBot::CDiscordBot(CGameContext *GameServer, std::string Token, std::strin
         
         if(CGS && m_Channel && !Object.msg.is_bot())
             CGS->SendChatFromDiscord(Object.msg.author.username.c_str(), Content.c_str());
-
-        if (Content == "here!")
-        {
-            auto & _channel = Object.msg.get_channel();
-            m_Channel = &_channel;
-            Object.msg.delete_message();
-        }
     });
 
     m_Bot->run();
