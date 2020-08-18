@@ -22,10 +22,11 @@ Configure own server
 ====================
 
 ```
-sv_discord_token "YOUR_BOT'S_TOKEN"
-sv_discord_channel "12345567899765" # unused
+sv_discord_token "token"
+sv_discord_server "15351155461346"
+sv_discord_channel "12345567899765"
 ```
 
-Invite bot on your Discord Server and launch server. After this, write `here!` in necessary channel. Good! Now you can chat via Discord.
+Invite bot on your Discord Server and launch server. Good! Now you can chat via Discord.
 
 ---
