@@ -1,4 +1,4 @@
-﻿Teeworlds Bridge
+﻿Teeworlds Bridge ![GitHub Actions](https://github.com/gerdoe-jr/teeworlds-bridge/workflows/Build/badge.svg)
 ================
 
 Build
@@ -19,7 +19,7 @@ make
 ---
 
 Configure own server
---------------------
+====================
 
 ```
 sv_discord_token "YOUR_BOT'S_TOKEN"
