@@ -33,7 +33,7 @@ jobs:
     - name: Prepare Linux
       run: |
         sudo apt-get update -y
-        sudo apt-get install pkg-config cmake ninja-build libfreetype6-dev libsdl2-dev -y
+        sudo apt-get install pkg-config cmake ninja-build libfreetype6-dev libsdl2-dev libboost-all-dev -y
         git clone --recursive https://github.com/zeroxs/aegis.cpp.git
         cd aegis.cpp
         sudo ./install-deps.sh
