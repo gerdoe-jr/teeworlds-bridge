@@ -18,7 +18,7 @@ jobs:
         - os: ubuntu-16.04
           cmake-path: /usr/bin/
           build-args: --parallel
-          cmake-args: -DCMAKE_CXX_COMPILER=g++-7 -DCMAKE_CXX_STANDARD=17 -G Ninja
+          cmake-args: -G Ninja
           package-file: teeworlds-*-linux_x86_64.tar.xz
 
     steps:
@@ -47,7 +47,7 @@ jobs:
       run: |
         mkdir release
         cd release
-        cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -Werror=dev -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=. ..
+        cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=g++-7 -DCMAKE_CXX_STANDARD=17 -Werror=dev -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=. ..
         ninja teeworlds_srv
 
     - name: Package
