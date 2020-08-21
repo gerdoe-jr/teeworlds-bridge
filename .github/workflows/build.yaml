@@ -13,13 +13,13 @@ jobs:
         - os: ubuntu-latest
           cmake-args: -G Ninja
           build-args: --parallel
-          package-file: teeworlds-*-latest.tar.xz
+          package-file: teeworlds-*-linux_x86_64.tar.xz
 
         - os: ubuntu-16.04
           cmake-path: /usr/bin/
           build-args: --parallel
           cmake-args: -G Ninja
-          package-file: teeworlds-*-16.04.tar.xz
+          package-file: teeworlds-*-linux_x86_64.tar.xz
 
     steps:
     - uses: actions/checkout@v2
